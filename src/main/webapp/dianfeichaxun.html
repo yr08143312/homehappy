@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>电费查询</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- loading mui -->
+	<link rel="stylesheet" type="text/css" href="css/mui.min.css">
+	<!-- loading mui.picker.min.css -->
+	<link rel="stylesheet" type="text/css" href="css/mui.picker.min.css">
+	<!-- loading mui.poppicker.css -->
+	<link rel="stylesheet" type="text/css" href="css/mui.poppicker.css">
+	<!-- custorm style -->
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<!-- 内容 -->
+	<div class="content">
+		<div class="teacherC">
+			<!-- 查询 -->
+			<form class="mui-input-group">
+				<div class="mui-input-row">
+					<label>宿舍名称</label>
+					<input type="text" class="mui-input-clear select" placeholder="例如:C501" data-input-clear="5"><span class="mui-icon mui-icon-clear mui-hidden"></span>
+					<a class="select_button" href="#">查询</a>
+				</div>			
+			</form>
+		</div>
+		<!-- 查询到的结果和图片 -->
+		<div class="result_table">
+			<table>
+				<tr>
+					<th>时间</th>
+					<th>宿舍</th>
+					<th>电量(度)</th>
+					<th>金额(元)</th>
+				</tr>
+				<tr>
+					<td>2016.01</td>
+					<td>C501</td>
+					<td>240</td>
+					<td>156</td>
+				</tr>
+				<tr>
+					<td>2016.02</td>
+					<td>C501</td>
+					<td>240</td>
+					<td>156</td>
+				</tr>
+				<tr>
+					<td>2016.03</td>
+					<td>C501</td>
+					<td>240</td>
+					<td>156</td>
+				</tr>
+				<tr>
+					<td>2016.04</td>
+					<td>C501</td>
+					<td>240</td>
+					<td>156</td>
+				</tr>
+				<tr>
+					<td>2016.05</td>
+					<td>C501</td>
+					<td>240</td>
+					<td>156</td>
+				</tr>
+			</table>
+		</div>
+		<div class="mui-content-padded">
+				<ul class="mui-pagination">
+					<li class="mui-previous mui-disabled">
+						<a href="#">
+							«
+						</a>
+					</li>
+					<li class="mui-active">
+						<a href="#">
+							1
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							2
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							3
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							4
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							5
+						</a>
+					</li>
+					<li class="mui-next">
+						<a href="#">
+							»
+						</a>
+					</li>
+				</ul>
+			</div>
+	</div>
+</body>
+</html>
