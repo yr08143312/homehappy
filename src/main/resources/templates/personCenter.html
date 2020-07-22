@@ -1,22 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>我要查询</title>
+	<title>个人中心</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- loading mui -->
 	<link rel="stylesheet" type="text/css" href="css/mui.min.css">
-	<!-- loading picker -->
-	<!-- <link rel="stylesheet" type="text/css" href="css/mui.picker.min.css"> -->
-	<!-- loading popicker -->
-	<!-- <link rel="stylesheet" type="text/css" href="css/mui.poppicker.css"> -->
 	<!-- custorm style -->
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 	<!-- 导航栏 -->
 	<header id="header" class="mui-bar mui-bar-nav">
-		<h1 class="mui-title">暑期嗨翻天</h1>
+		<h1 class="mui-title">广东省轻工职业技术学校</h1>
 		<a class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left" href="javascript:history.go(-1)"><span class="mui-icon mui-icon-left-nav"></span></a>
 		<a class="mui-icon mui-icon-bars mui-pull-right" href="#topPopover"></a>
 	</header>
@@ -48,49 +44,39 @@
 	<div class="content">
 		<section class="xueqi">
 			<div class="class">
-				<label id="classResult">查询</label>
+				<label id="classResult">个人中心</label>
 			</div>
 		</section>
-
-		<section class="query">
-			<table>
-				<tr>
-					<td>
-						<a href="timetable.html">
-							<img src="img/timetable.png">
-							<p>课表查询</p>
-						</a>
-					</td>
-					<td>
-						<a href="query_classroom.html">
-							<img src="img/classroom.png">
-							<p>教室查询</p>
-						</a>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<a href="query_keshi.html">
-							<img src="img/keshi.png">
-							<p>科室查询</p>
-						</a>
-					</td>
-					<td>
-						<a href="query_score.html">
-							<img src="img/chengji.png">
-							<p>成绩查询</p>
-						</a>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<a href="query_dianfei.html">
-							<img src="img/electricity.png">
-							<p>电费查询</p>
-						</a>
-					</td>
-				</tr>
-			</table>
+		<section class="personData">
+			<ul class="mui-table-view mui-table-view-chevron">
+				<li class="mui-table-view-cell mui-media">
+					<a class="mui-navigate-right" href="#">
+						<img class="mui-media-object mui-pull-left head-img" id="
+						head-img" src="img/timg.jpeg">
+						<label class="name">老丸子</label>
+					</a>
+				</li>
+			</ul>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a>班级<span class="mui-pull-right">2016级机电1班</span></a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a>学号<span class="mui-pull-right">20163325239</span></a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a>性别<span class="mui-pull-right">男</span></a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a>宿舍<span class="mui-pull-right">B19-12</span></a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a>手机号<span class="mui-pull-right">11111111111</span></a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a>邮箱地址<span class="mui-pull-right">xiaowanzi@163.com</span></a>
+				</li>
+			</ul>
 		</section>
 	</div>
 	<script src="js/mui.min.js"></script>
