@@ -2,6 +2,9 @@
 /* 主体内容 更多精品模板请访问：http://www.bootstrapmb.com */
 .content {
   text-align: center; }
+  .content .gradeclass {
+    position: absolute;
+    top: 35%;}
   .content .xueqi {
     margin-top: 13%;
     height: 50px;
@@ -12,11 +15,14 @@
         display: inline-block;
         line-height: 50px;
         color: #ffffff;
-        width: 200px;
+        width: 300px;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
         -o-text-overflow: ellipsis; }
+          .content .xueqi .class label span {
+            margin-left: 10%;
+          }
       .content .xueqi .class .select {
         /*width: 20%;
         height: 40px;*/
@@ -27,7 +33,7 @@
         right: 5px;
         top: 11px; }
   .content .query {
-    margin-top: 2%;
+    position:fixed;bottom:0
     /* 查询的内容 */ }
     .content .query table {
       width: 100%; }

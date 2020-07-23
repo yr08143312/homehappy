@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<title>卓卓暑期积分</title>
 	<meta charset="utf-8">
@@ -12,8 +13,44 @@
 	<!-- <link rel="stylesheet" type="text/css" href="css/mui.poppicker.css"> -->
 	<!-- custorm style -->
 	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	<script>
+        var timer=null;
+        function displayClock(num){//num是传入的startClock中的动态值
+            if(num < 10){
+                return "0"+num;
+            }
+            else{
+                return num;
+            }
+        }
+        //停止计时
+        function stopClock(){
+            clearTimeout(timer);
+        }
+        //开始计时
+        function startClock(){
+            var time =new Date();
+            var year=displayClock(time.getFullYear())+"-";
+            var month=displayClock(time.getMonth() + 1)+"-";
+            var day=displayClock(time.getDate())+" ";
+            var hours=displayClock(time.getHours())+":";
+            var minutes=displayClock(time.getMinutes())+":";
+            var seconds=displayClock(time.getSeconds());
+            //显示时间
+            show.innerHTML=year+month+day+hours+minutes+seconds;//在id为show的块区域显示
+            timer=setTimeout("startClock()",1000);//延时器
+        }
+	</script>
 </head>
-<body>
+<style>
+	#showDateTime{
+		font-size: 24px;
+		color:#4213C9;
+		text-align:center;
+		margin-top: 10px;
+	}
+</style>
+<body onload="startClock()" onunload="stopClock()">
 	<!-- 导航栏 -->
 	<!--<header id="header" class="mui-bar mui-bar-nav">
 		<h1 class="mui-title">暑期嗨翻天 <span th:text="${hello}"></span></h1>
@@ -45,50 +82,61 @@
 		</div>
 	</div>-->
 	<!-- 主内容部分 -->
-	<div class="content" style="margin-top:-13%;">
+	<div class="content">
 		<section class="xueqi">
 			<div class="class">
-				<label id="classResult">当前总分：100</label>
+				<label id="classResult" style="">当前总分：[[${total}]]分<span th:if="${today} eq null">今日未打分</span><span th:if="${today} ne null">今日得分:[[${today.integral}]]</span></label>
 			</div>
 		</section>
+		<div id="showDateTime"></div>
+		<div id="nograde" class="gradeclass" th:if="${today} eq null" style="left: 13%;">
+			<h1 style="color: red">今日未打分</h1>
+			<input type="text" size="15">
+			<input type="button" value="提交">
+		</div>
+		<div id="grade" class="gradeclass" th:if="${today} ne null" style="left: 20%;">
+			<h1 style="color: green">今日得分：[[${today.integral}]]</h1>
+		</div>
 		<section class="query">
 			<table>
 				<tr>
+					<td style="background-color: #8f8f94">
+						<a th:href="@{/index}">
+							<img th:src="@{/img/keshi.png}">
+							<p style="color: white">主页打分</p>
+						</a>
+					</td>
 					<td>
 						<a th:href="@{/timetable.html}">
 							<img th:src="@{/img/timetable.png}">
-							<p>课表查询</p>
+							<p>计划查询</p>
 						</a>
 					</td>
 					<td>
 						<a th:href="@{/query_classroom.html}">
 							<img th:src="@{/img/classroom.png}">
-							<p>教室查询</p>
-						</a>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<a th:href="@{/query_keshi.html}">
-							<img th:src="@{/img/keshi.png}">
-							<p>科室查询</p>
+							<p>奖惩查询</p>
 						</a>
 					</td>
 					<td>
 						<a th:href="@{/query_score.html}">
 							<img th:src="@{/img/chengji.png}">
-							<p>成绩查询</p>
+							<p>得分报表</p>
 						</a>
 					</td>
 				</tr>
 				<tr>
+
+
+				</tr>
+				<!--<tr>
 					<td>
 						<a th:href="@{/query_dianfei.html}">
 							<img th:src="@{/img/electricity.png}">
 							<p>电费查询</p>
 						</a>
 					</td>
-				</tr>
+				</tr>-->
 			</table>
 		</section>
 	</div>
