@@ -3,6 +3,7 @@ package com.yangrui.homehappy.dao;
 import com.yangrui.homehappy.vo.DateIntegral;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.Date;
@@ -17,5 +18,5 @@ public interface IntegralMapper {
     int getTotalIntegral();
 
     @Insert("insert into t_date_integral(date,integral) values (#{date},#{integral})")
-    int addIntegral(Date date, int integral);
+    int addIntegral(@Param("date") Date date, @Param("integral")int integral);
 }

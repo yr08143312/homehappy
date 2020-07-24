@@ -37,8 +37,18 @@
             var minutes=displayClock(time.getMinutes())+":";
             var seconds=displayClock(time.getSeconds());
             //显示时间
-            show.innerHTML=year+month+day+hours+minutes+seconds;//在id为show的块区域显示
+            showDateTime.innerHTML=year+month+day+hours+minutes+seconds;//在id为show的块区域显示
             timer=setTimeout("startClock()",1000);//延时器
+        }
+        function clearNoNum(obj){
+            obj.value = obj.value.replace(/[^\d.]/g,"");  //清除“数字”和“.”以外的字符
+            obj.value = obj.value.replace(/^\./g,"");  //验证第一个字符是数字而不是.
+            obj.value = obj.value.replace(/\.{2,}/g,"."); //只保留第一个. 清除多余的.
+            obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+            if(obj.value < 0 || obj.value > 20){
+				alert("分数在0-20之间");
+                obj.value = "10";
+			}
         }
 	</script>
 </head>
@@ -89,10 +99,13 @@
 			</div>
 		</section>
 		<div id="showDateTime"></div>
-		<div id="nograde" class="gradeclass" th:if="${today} eq null" style="left: 13%;">
+		<div id="nograde" class="gradeclass" th:if="${today} eq null" style="left: 20%;">
 			<h1 style="color: red">今日未打分</h1>
-			<input type="text" size="15">
-			<input type="button" value="提交">
+			<h4 th:if="${error} ne null" style="color: mediumvioletred">错误：[[${error}]]</h4>
+			<form action="/index/add" method="post">
+				<input type="text" size="15" name="integral" maxlength="2" value="10" style="text-align: center" oninput="clearNoNum(this)" min="0" max="20"><br />
+				<input type="submit" value="提交" />
+			</form>
 		</div>
 		<div id="grade" class="gradeclass" th:if="${today} ne null" style="left: 20%;">
 			<h1 style="color: green">今日得分：[[${today.integral}]]</h1>
