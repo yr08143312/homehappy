@@ -14,7 +14,7 @@ public interface IntegralMapper {
     @Select("select * from t_date_integral where date = date_format(#{_parameter},'%Y-%m-%d')")
     DateIntegral getDateIntegral(String date);
 
-    @Select("select sum(integral) from t_date_integral")
+    @Select("SELECT IFNULL(SUM(integral),0) FROM t_date_integral")
     int getTotalIntegral();
 
     @Insert("insert into t_date_integral(date,integral) values (#{date},#{integral})")
