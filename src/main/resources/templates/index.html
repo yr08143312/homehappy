@@ -5,14 +5,9 @@
 	<title>卓卓暑期积分</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- loading mui -->
 	<link rel="stylesheet" type="text/css" th:href="@{/css/mui.min.css}">
-	<!-- loading picker -->
-	<!-- <link rel="stylesheet" type="text/css" href="css/mui.picker.min.css"> -->
-	<!-- loading popicker -->
-	<!-- <link rel="stylesheet" type="text/css" href="css/mui.poppicker.css"> -->
-	<!-- custorm style -->
 	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	<script type="text/javascript" th:src="@{/js/jquery-1.12.1.min.js}"></script>
 	<script>
         var timer=null;
         function displayClock(num){//num是传入的startClock中的动态值
@@ -50,6 +45,32 @@
                 obj.value = "10";
 			}
         }
+        function addIntegral(){
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url: "/index/add",
+                data: {"integral":$("[name='integral']").val()},// 序列化的form
+                async: false,
+                error: function(data) {
+                    showMessageDailog("错误", data);
+                },
+                success: function(data) {
+					if(data.code == 1){
+						$(".gradeclass").hide();
+						$("#showDateTime").after('<div id="grade" class="gradeclass" th:if="${today} ne null" style="left: 20%;"><h1 style="color: green">今日得分：'+ data.data +'</h1></div>');
+					}else{
+                        alert(data.message);
+					}
+                }
+            });
+		}
+        function showMessageDailog(title, message) {
+            $("<div title='" + title + "'><p style='color:red;font-weight:bold;'>" + message + "</p></div>").dialog({
+                modal: true,
+                zIndex: 99999
+            });
+        }
 	</script>
 </head>
 <style>
@@ -61,36 +82,6 @@
 	}
 </style>
 <body onload="startClock()" onunload="stopClock()">
-	<!-- 导航栏 -->
-	<!--<header id="header" class="mui-bar mui-bar-nav">
-		<h1 class="mui-title">暑期嗨翻天 <span th:text="${hello}"></span></h1>
-		<a class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left" href="javascript:history.go(-1)"><span class="mui-icon mui-icon-left-nav"></span></a>
-		<a class="mui-icon mui-icon-bars mui-pull-right" href="#topPopover"></a>
-	</header>-->
-	<!-- 右上角弹出菜单 -->
-	<!--<div id="topPopover" class="mui-popover">
-			<div class="mui-popover-arrow"></div>
-			<div class="mui-scroll-wrapper">
-				<div class="mui-scroll">
-					<ul class="mui-table-view">
-						<li class="mui-table-view-cell">
-							<a href="query.html">我要查询</a>
-						</li>
-						<li class="mui-table-view-cell"><a href="vote.html">我要投票</a>
-						</li>
-						<li class="mui-table-view-cell"><a href="rate.html">我要评价</a>
-						</li>
-						<li class="mui-table-view-cell"><a href="enroll.html">我要报名</a>
-						</li>
-						<li class="mui-table-view-cell"><a href="payment.html">我要缴费</a>
-						</li>
-						<li class="mui-table-view-cell"><a href="personCenter.html">个人中心</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>-->
 	<!-- 主内容部分 -->
 	<div class="content">
 		<section class="xueqi">
@@ -101,10 +92,9 @@
 		<div id="showDateTime"></div>
 		<div id="nograde" class="gradeclass" th:if="${today} eq null" style="left: 20%;">
 			<h1 style="color: red">今日未打分</h1>
-			<h4 th:if="${error} ne null" style="color: mediumvioletred">错误：[[${error}]]</h4>
-			<form action="/index/add" method="post">
+			<form>
 				<input type="text" size="15" name="integral" maxlength="2" value="10" style="text-align: center" oninput="clearNoNum(this)" min="0" max="20"><br />
-				<input type="submit" value="提交" />
+				<input type="submit" value="提交" onclick="addIntegral()" />
 			</form>
 		</div>
 		<div id="grade" class="gradeclass" th:if="${today} ne null" style="left: 20%;">
@@ -128,7 +118,7 @@
 					<td>
 						<a th:href="@{/query_classroom.html}">
 							<img th:src="@{/img/classroom.png}">
-							<p>奖惩查询</p>
+							<p>积分奖惩规则</p>
 						</a>
 					</td>
 					<td>
