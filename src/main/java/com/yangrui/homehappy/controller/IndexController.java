@@ -4,6 +4,7 @@ import com.yangrui.homehappy.service.IntegralService;
 import com.yangrui.homehappy.vo.ResultDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,7 +19,7 @@ public class IndexController {
     @Resource
     private IntegralService integralService;
 
-    @RequestMapping("")
+    @GetMapping("")
     public String index(Model model){
         model.addAttribute("total", integralService.getTotalIntegral());
         model.addAttribute("today",integralService.getDateIntegral(""));
@@ -39,6 +40,11 @@ public class IndexController {
             result.setMessage(e.getMessage());
         }
         return result;
+    }
+
+    @GetMapping("index/timetable")
+    public String timetable(){
+        return "timetable";
     }
 
 
