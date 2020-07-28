@@ -2,6 +2,18 @@
 /* 主体内容 更多精品模板请访问：http://www.bootstrapmb.com */
 .content {
   text-align: center; }
+  .content .img-div {
+    height:auto;
+    width: auto;
+    justify-content:center;}
+      .content .img-div img{
+        position:absolute;
+        top:-10%;
+        bottom:0;
+        left:0;
+        right:0;
+        width:100%;
+        margin:auto;}
   .content .gradeclass {
     position: absolute;
     top: 35%;}

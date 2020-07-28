@@ -21,8 +21,7 @@ public class IndexController {
 
     @GetMapping("")
     public String index(Model model){
-        model.addAttribute("total", integralService.getTotalIntegral());
-        model.addAttribute("today",integralService.getDateIntegral(""));
+        setTitle(model);
         return "index";
     }
 
@@ -43,9 +42,25 @@ public class IndexController {
     }
 
     @GetMapping("index/timetable")
-    public String timetable(){
+    public String timetable(Model model) {
+        setTitle(model);
         return "timetable";
     }
 
+    @GetMapping("index/queryClassroom")
+    public String queryClassroom(Model model){
+        setTitle(model);
+        return "query_classroom";
+    }
 
+    @GetMapping("index/queryScore")
+    public String queryScore(Model model){
+        setTitle(model);
+        return "query_score";
+    }
+
+    public void setTitle(Model model){
+        model.addAttribute("total", integralService.getTotalIntegral());
+        model.addAttribute("today",integralService.getDateIntegral(""));
+    }
 }

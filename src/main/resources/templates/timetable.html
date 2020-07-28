@@ -14,9 +14,12 @@
 	<div class="content">
 		<section class="xueqi">
 			<div class="class">
-				<label id="classResult">计划查询</label>
+				<label id="classResult" style="">当前总分：[[${total}]]分<span th:if="${today} eq null">今日未打分</span><span th:if="${today} ne null">今日得分:[[${today.integral}]]</span></label>
 			</div>
 		</section>
+		<div class="img-div">
+			<img th:src="@{/img/schedule.jpg}" alt="手写计划表">
+		</div>
 		<section class="query">
 			<table>
 				<tr>
@@ -26,20 +29,20 @@
 							<p>主页打分</p>
 						</a>
 					</td>
-					<td  style="background-color: #8f8f94">
+					<td style="background-color: #8f8f94">
 						<a th:href="@{/index/timetable}">
 							<img th:src="@{/img/timetable.png}">
 							<p style="color: white">计划查询</p>
 						</a>
 					</td>
 					<td>
-						<a th:href="@{/query_classroom.html}">
+						<a th:href="@{/index/queryClassroom}">
 							<img th:src="@{/img/classroom.png}">
 							<p>积分奖惩规则</p>
 						</a>
 					</td>
 					<td>
-						<a th:href="@{/query_score.html}">
+						<a th:href="@{/index/queryScore}">
 							<img th:src="@{/img/chengji.png}">
 							<p>得分报表</p>
 						</a>
@@ -48,6 +51,5 @@
 			</table>
 		</section>
 	</div>
-	<script src="js/mui.min.js"></script>
 </body>
 </html>
