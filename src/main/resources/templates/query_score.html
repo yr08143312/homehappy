@@ -16,6 +16,60 @@
 				<label id="classResult" style="">当前总分：[[${total}]]分<span th:if="${today} eq null">今日未打分</span><span th:if="${today} ne null">今日得分:[[${today.integral}]]</span></label>
 			</div>
 		</section>
+		<table style="margin-top: 5%">
+			<tr>
+				<td>本周总分：</td>
+				<td>[[${score.weekTotal}]]分</td>
+			</tr>
+			<tr>
+				<td>本周平均分：</td>
+				<td>[[${score.weekAverage}]]分</td>
+			</tr>
+			<tr>
+				<td>距本周奖励还差：</td>
+				<td>[[${score.weekAwardFar}]]分</td>
+			</tr>
+			<tr>
+				<td>距本周结算日还有：</td>
+				<td>[[${score.weekSettlementDateFar}]]天</td>
+			</tr>
+		</table>
+
+		<table style="margin-top: 10%">
+			<tr>
+				<td>总分：</td>
+				<td>[[${score.total}]]分</td>
+			</tr>
+			<tr>
+				<td>总平均分：</td>
+				<td>[[${score.totalAverage}]]分</td>
+			</tr>
+			<tr>
+				<td>距一档奖励还差：</td>
+				<td>[[${score.firstAwardFar}]]分</td>
+			</tr>
+			<tr>
+				<td>距二档奖励还差：</td>
+				<td>[[${score.secondAwardFar}]]分</td>
+			</tr>
+			<tr>
+				<td>距三挡奖励还差：</td>
+				<td>[[${score.thirdAwardFar}]]分</td>
+			</tr>
+			<tr>
+				<td>距终极奖励还差：</td>
+				<td>[[${score.ultimateAwardFar}]]分</td>
+			</tr>
+			<tr>
+				<td>总分结算日：</td>
+				<td>[[${score.settlementDate}]]</td>
+			</tr>
+			<tr>
+				<td>距总分结算日还有：</td>
+				<td>[[${score.settlementDateFar}]]天</td>
+			</tr>
+		</table>
+
 		<section class="query">
 			<table>
 				<tr>

@@ -56,6 +56,7 @@ public class IndexController {
     @GetMapping("index/queryScore")
     public String queryScore(Model model){
         setTitle(model);
+        model.addAttribute("score", integralService.getStatistics());
         return "query_score";
     }
 

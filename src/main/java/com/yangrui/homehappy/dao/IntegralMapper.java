@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.Date;
+import java.util.List;
 
 @Mapper
 public interface IntegralMapper {
@@ -19,4 +20,7 @@ public interface IntegralMapper {
 
     @Insert("insert into t_date_integral(date,integral) values (#{date},#{integral})")
     int addIntegral(@Param("date") Date date, @Param("integral")int integral);
+
+    @Select("select * from t_date_integral")
+    List<DateIntegral> getIntegralDatas();
 }
