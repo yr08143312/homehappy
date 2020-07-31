@@ -1,7 +1,9 @@
 package com.yangrui.homehappy.controller;
 
 import com.yangrui.homehappy.service.IntegralService;
+import com.yangrui.homehappy.utils.DateTimeUtil;
 import com.yangrui.homehappy.vo.ResultDTO;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +21,25 @@ public class IndexController {
     @Resource
     private IntegralService integralService;
 
+    @Value("${week.award:63}")
+    private int weekAward;
+
     @GetMapping("")
     public String index(Model model){
         setTitle(model);
+        //星期一需要展示得到奖励与否
+        if(DateTimeUtil.getDayOfTheWeek() == 1) {
+            int lastWeekIntegral = integralService.getLastWeekIntegral();
+            if(lastWeekIntegral >= weekAward){
+                model.addAttribute("lastWeekAward", "恭喜，上周"+lastWeekIntegral+"分,获取周奖励！请继续保持。");
+                model.addAttribute("color", "red");
+            }else{
+                model.addAttribute("lastWeekAward", "很遗憾,上周"+lastWeekIntegral+"分,这周要努力哦。");
+                model.addAttribute("color", "blue");
+            }
+
+
+        }
         return "index";
     }
 

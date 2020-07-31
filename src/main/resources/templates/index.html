@@ -80,6 +80,12 @@
 		text-align:center;
 		margin-top: 10px;
 	}
+	#lastWeekAward{
+		font-size: 30px;
+		color: #4213C9;;
+		text-align:center;
+		margin-top: 50px;
+	}
 </style>
 <body onload="startClock()" onunload="stopClock()">
 	<!-- 主内容部分 -->
@@ -90,6 +96,10 @@
 			</div>
 		</section>
 		<div id="showDateTime"></div>
+		<div id="lastWeekAward" th:if="${lastWeekAward} ne null">
+			<span th:if="${color} eq red" style="color: red">[[${lastWeekAward}]]</span>
+			<span th:if="${color} eq blue" style="color: blue">[[${lastWeekAward}]]</span>
+		</div>
 		<div id="nograde" class="gradeclass" th:if="${today} eq null" style="left: 20%;">
 			<h1 style="color: red">今日未打分</h1>
 			<form>

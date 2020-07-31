@@ -11,4 +11,6 @@ public interface IntegralService {
     boolean addIntegral(int integral) throws Exception;
 
     ScoreVo getStatistics();
+
+    int getLastWeekIntegral();
 }

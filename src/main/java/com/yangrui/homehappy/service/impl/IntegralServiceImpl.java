@@ -11,6 +11,7 @@ import org.thymeleaf.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
+import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
@@ -94,4 +95,10 @@ public class IntegralServiceImpl implements IntegralService {
         return vo;
     }
 
+    @Override
+    public int getLastWeekIntegral() {
+        Date lastWeekMonday = DateTimeUtil.agoWeekByLocalDateTime(DayOfWeek.MONDAY,1);
+        Date lastWeekSunday = DateTimeUtil.agoWeekByLocalDateTime(DayOfWeek.MONDAY,0);
+        return integralMapper.getRangeDateTotalIntegral(lastWeekMonday,lastWeekSunday);
+    }
 }

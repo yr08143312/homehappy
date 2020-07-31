@@ -23,4 +23,7 @@ public interface IntegralMapper {
 
     @Select("select * from t_date_integral")
     List<DateIntegral> getIntegralDatas();
+
+    @Select("SELECT IFNULL(SUM(integral),0) FROM t_date_integral where date BETWEEN #{start} and #{end}")
+    int getRangeDateTotalIntegral(@Param("start")Date start, @Param("end")Date end);
 }
