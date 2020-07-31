@@ -26,7 +26,7 @@ public class TaskService {
     public void awardWeekMessage(){
         int lastWeekIntegral = integralService.getLastWeekIntegral();
         if(lastWeekIntegral >= weekAward){
-            emailService.sendAttachmentMail("卓卓获得奖励","恭喜卓卓，上周得到"+lastWeekIntegral+"分,获取周奖励！请继续保持。",mailTo.split("|"));
+            emailService.sendAttachmentMail("卓卓获得奖励","恭喜卓卓，上周得到"+lastWeekIntegral+"分,获取周奖励！请继续保持。",mailTo.split("\\|"));
         }
     }
 }
