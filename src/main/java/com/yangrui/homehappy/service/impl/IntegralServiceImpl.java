@@ -75,7 +75,9 @@ public class IntegralServiceImpl implements IntegralService {
         List<DateIntegral> integrals = integralMapper.getIntegralDatas();
         Date startDayOfWeek = DateTimeUtil.getStartDayOfWeek();
         Date endDayOfWeek = DateTimeUtil.getEndDayOfWeek();
-        List<DateIntegral> weekIntegrals = integrals.stream().filter(x -> x.getDate().before(startDayOfWeek) || x.getDate().after(endDayOfWeek)).collect(Collectors.toList());
+        List<DateIntegral> weekIntegrals = integrals.stream().filter(x ->
+                (x.getDate().compareTo(startDayOfWeek) >=0 && x.getDate().compareTo(endDayOfWeek) <=0)).collect(Collectors.toList()
+        );
         //设置周数据
         weekIntegrals.forEach(x -> vo.setWeekTotal(vo.getWeekTotal() + x.getIntegral()));
         vo.setWeekAverage(new BigDecimal(vo.getWeekTotal()).divide(new BigDecimal(weekIntegrals.size()),2,BigDecimal.ROUND_HALF_UP).doubleValue());

@@ -27,10 +27,9 @@ public class DateTimeUtil {
      * @return
      */
     public static Date getStartDayOfWeek() {
-        TemporalField fieldISO = WeekFields.of(Locale.CHINA).dayOfWeek();
-        LocalDate localDate = LocalDate.now();
-        localDate.with(fieldISO, 1);
-        return Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        LocalDate now = LocalDate.now();
+        LocalDate firstDay = now.with(DayOfWeek.MONDAY);
+        return Date.from(firstDay.atStartOfDay(ZoneId.systemDefault()).toInstant());
     }
 
     public static int getNowDayOfWeek() {
@@ -52,9 +51,9 @@ public class DateTimeUtil {
      */
     public static Date getEndDayOfWeek() {
         TemporalField fieldISO = WeekFields.of(Locale.CHINA).dayOfWeek();
-        LocalDate localDate = LocalDate.now();
-        localDate.with(fieldISO, 7);
-        return Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).plusDays(1L).minusNanos(1L).toInstant());
+        LocalDate now = LocalDate.now();
+        LocalDate endDay = now.with(DayOfWeek.SUNDAY);
+        return Date.from(endDay.atStartOfDay(ZoneId.systemDefault()).plusDays(1L).minusNanos(1L).toInstant());
     }
 
 
